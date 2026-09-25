@@ -1,0 +1,57 @@
+<mvc:View
+    controllerName="com.fourhubx.cursofiori.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+
+    <!-- showNavButton permite voltar para a página anterior -->
+    <Page 
+        id="pageCadastro" 
+        title="{i18n>registerComplaint}" 
+        showNavButton="true" 
+        navButtonPress=".onNavBack">
+
+        <f:SimpleForm 
+            id="formCadastro"
+            editable="true"
+            layout="ResponsiveGridLayout"
+            title="{i18n>preenchaDados}"
+            columnsL="1"
+            columnsM="1">
+            
+            <f:content>
+                <Label text="{i18n>cpf}" />
+                <Input id="inputCpf" placeholder="{i18n>digiteCpf}" />
+
+                <Label text="{i18n>type}" />
+                <Select id="selectTipo">
+                    <core:Item key="produto" text="{i18n>produto}" />
+                    <core:Item key="servico" text="{i18n>servico}" />
+                </Select>
+
+                <Label text="{i18n>brand}" />
+                <Input id="inputMarca" placeholder="{i18n>digiteMarca}" />
+
+                <Label text="Status" />
+                <Select id="selectStatus">
+                    <core:Item key="aberto" text="{i18n>statusAberto}" />
+                    <core:Item key="analise" text="{i18n>statusAnalise}" />
+                    <core:Item key="resolvido" text="{i18n>statusResolvido}" />
+                </Select>
+
+                <Label text="{i18n>message}" />
+                <TextArea id="textMensagem" rows="4" placeholder="{i18n>descrevaProblema}" />
+            </f:content>
+        </f:SimpleForm>
+
+        <!-- Rodapé com o botão Salvar -->
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button text="Salvar" type="Emphasized" press=".onSave"/>
+            </Toolbar>
+        </footer>
+
+    </Page>
+</mvc:View>

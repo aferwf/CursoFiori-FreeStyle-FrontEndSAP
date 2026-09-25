@@ -1,0 +1,199 @@
+<mvc:View
+    controllerName="com.fourhubx.cursofiori.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:t="sap.ui.table"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Page
+        id="page"
+        title="{i18n>title}">
+
+        <Button
+            text="{i18n>registerComplaint}"
+            press="RouteView2"/>
+
+        <!-- Tabela -->
+        <t:Table
+        id="table1"
+        rows="{/reclamacoes}"
+        visibleRowCount="10"
+        threshold="5"
+        class="sapUiTinyMargin"
+        selectionMode="MultiToggle">
+
+            <!-- Barra com título -->
+            <t:toolbar>
+
+                <OverflowToolbar>
+
+                    <Title
+                        id="title"
+                        text="{i18n>complaints}"/>
+
+                </OverflowToolbar>
+
+            </t:toolbar>
+
+            <!-- Colunas -->
+            <t:columns>
+
+                <!-- CPF -->
+                <t:Column
+                    width="10rem"
+                    sortProperty="Cpf"
+                    filterProperty="Cpf"
+                    autoResizable="true">
+
+                    <Label text="{i18n>cpf}"/>
+
+                    <t:template>
+
+                        <Text
+                            text="{Cpf}"
+                            wrapping="false"/>
+
+                    </t:template>
+
+                </t:Column>
+
+                <!-- ID -->
+                <t:Column
+                    width="8rem"
+                    sortProperty="Id"
+                    filterProperty="Id"
+                    autoResizable="true">
+
+                    <Label text="{i18n>id}"/>
+
+                    <t:template>
+
+                        <Text
+                            text="{Id}"
+                            wrapping="false"/>
+
+                    </t:template>
+
+                </t:Column>
+
+                <!-- Sequência -->
+                <t:Column
+                    width="8rem"
+                    sortProperty="Sequencia"
+                    filterProperty="Sequencia"
+                    autoResizable="true">
+
+                    <Label text="{i18n>sequence}"/>
+
+                    <t:template>
+
+                        <Text
+                            text="{Sequencia}"
+                            wrapping="false"/>
+
+                    </t:template>
+
+                </t:Column>
+
+                <!-- Tipo -->
+                <t:Column
+                    width="10rem"
+                    sortProperty="Tipo"
+                    filterProperty="Tipo"
+                    autoResizable="true">
+
+                    <Label text="{i18n>type}"/>
+
+                    <t:template>
+
+                        <Text
+                            text="{Tipo}"
+                            wrapping="false"/>
+
+                    </t:template>
+
+                </t:Column>
+
+                <!-- Marca -->
+                <t:Column
+                    width="10rem"
+                    sortProperty="Marca"
+                    filterProperty="Marca"
+                    autoResizable="true">
+
+                    <Label text="{i18n>brand}"/>
+
+                    <t:template>
+
+                        <Text
+                            text="{Marca}"
+                            wrapping="false"/>
+
+                    </t:template>
+
+                </t:Column>
+
+                <!-- Mensagem -->
+                <t:Column
+                    width="20rem"
+                    sortProperty="Mensagem"
+                    filterProperty="Mensagem"
+                    autoResizable="true">
+
+                    <Label text="{i18n>message}"/>
+
+                    <t:template>
+
+                        <Text
+                            text="{Mensagem}"
+                            wrapping="false"/>
+
+                    </t:template>
+
+                </t:Column>
+
+                <!-- Status -->
+                <t:Column
+                    width="10rem"
+                    sortProperty="Status"
+                    filterProperty="Status"
+                    autoResizable="true">
+
+                    <Label text="{i18n>status}"/>
+
+                    <t:template>
+
+                        <Text
+                            text="{Status}"
+                            wrapping="false"/>
+
+                    </t:template>
+
+                </t:Column>
+
+                <!-- Avaliação -->
+                <t:Column
+                    width="10rem"
+                    sortProperty="Avaliacao"
+                    filterProperty="Avaliacao"
+                    autoResizable="true">
+
+                    <Label text="Avaliação"/>
+
+                    <t:template>
+
+                        <Text
+                            text="{i18n>review}"
+                            wrapping="false"/>
+
+                    </t:template>
+
+                </t:Column>
+
+            </t:columns>
+
+        </t:Table>
+
+    </Page>
+
+</mvc:View>
