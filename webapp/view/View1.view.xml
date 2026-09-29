@@ -3,20 +3,41 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:t="sap.ui.table"
     xmlns="sap.m"
-    xmlns:core="sap.ui.core">
+    xmlns:core="sap.ui.core"
+    xmlns:fb="sap.ui.comp.filterbar">
 
     <Page
         id="page"
         title="{i18n>title}">
 
+
+    <fb:FilterBar id="filterBar1" reset=".onFilterReset" search=".onFilterSearch">
+            <fb:filterItems>
+
+                <fb:FilterItem name="Cpf" label="{i18n>Cpf}">
+                    <fb:control>
+                        <Input value="{filter>/Cpf}" />
+                    </fb:control>
+                </fb:FilterItem>
+
+                <fb:FilterItem name="ID" label="{i18n>ID}">
+                    <fb:control>
+                        <Input value="{filter>/ID}" />
+                    </fb:control>
+                </fb:FilterItem>
+
+            </fb:filterItems>
+        </fb:FilterBar>
+
+
         <Button
             text="{i18n>registerComplaint}"
-            press="RouteView2"/>
+            press=".RouteView2"/>
 
         <!-- Tabela -->
         <t:Table
         id="table1"
-        rows="{/reclamacoes}"
+        rows="{/ZC_TB_COMPLAINT_FF}"
         visibleRowCount="10"
         threshold="5"
         class="sapUiTinyMargin"
@@ -60,8 +81,8 @@
                 <!-- ID -->
                 <t:Column
                     width="8rem"
-                    sortProperty="Id"
-                    filterProperty="Id"
+                    sortProperty="ID"
+                    filterProperty="ID"
                     autoResizable="true">
 
                     <Label text="{i18n>id}"/>
@@ -69,7 +90,7 @@
                     <t:template>
 
                         <Text
-                            text="{Id}"
+                            text="{ID}"
                             wrapping="false"/>
 
                     </t:template>
@@ -178,12 +199,12 @@
                     filterProperty="Avaliacao"
                     autoResizable="true">
 
-                    <Label text="Avaliação"/>
+                    <Label text="{i18n>review}"/>
 
                     <t:template>
 
                         <Text
-                            text="{i18n>review}"
+                            text="{Avaliacao}"
                             wrapping="false"/>
 
                     </t:template>

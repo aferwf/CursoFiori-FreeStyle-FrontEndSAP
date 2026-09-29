@@ -3,32 +3,121 @@ sap.ui.define(
     'sap/ui/core/mvc/Controller',
     'sap/ui/model/json/JSONModel',
     'sap/ui/model/resource/ResourceModel',
+    'sap/ui/model/Filter',          
+    'sap/ui/model/FilterOperator',
+    'sap/ui/model/FilterType'  
   ],
-  (Controller, JSONModel, ResourceModel) => {
+ (Controller, JSONModel, ResourceModel, Filter, FilterOperator, FilterType) => {
     'use strict'
 
     return Controller.extend('com.fourhubx.cursofiori.controller.View1', {
       onInit() {
-        // Carrega o arquivo i18n de acordo com o idioma
-        // const oI18nModel = new ResourceModel({
-        //   bundleName: 'cursofiori.i18n.i18n',
-        // })
 
-        // this.getView().setModel(oI18nModel, 'i18n')
+        var oView   = this.getView();
+        var oFModel = new sap.ui.model.json.JSONModel()
 
-        // // Acessa os textos traduzidos
-        // const oBundle = oI18nModel.getResourceBundle()
+         oFModel.setData({
+          Cpf: "",
+          ID: ""
+        });
 
-        const oDados = {}
+        oView.setModel(oFModel,"filter");
 
-        const oModel = new JSONModel(oDados)
-        this.getView().setModel(oModel)
+        
+        //const oFilterModel = new JSONModel(oFilterData);
+        //this.getView().setModel(oFilterModel, "filter"); 
       },
 
-      RouteView2() {
+      onFilterReset: function(){
+    
+            },
+
+      onFilterSearch: function () {
+                var oView   = this.getView();
+                var oTable  = oView.byId("table1");
+                var oFModel = oView.getModel("filter");
+                var oFData  = oFModel.getData();
+                var oFilter = null;
+                var aParams = [];
+                var aFilters = [];
+
+
+          if(oFData.Cpf != ''){
+                    oFilter = new sap.ui.model.Filter({
+                        path: 'Cpf',
+                        operator: sap.ui.model.FilterOperator.EQ,
+                        value1: oFData.Cpf
+                    });
+                    aFilters.push(oFilter);
+                }
+            
+          if(oFData.ID != ''){
+                    oFilter = new sap.ui.model.Filter({
+                        path: 'ID',
+                        operator: sap.ui.model.FilterOperator.EQ,
+                        value1: oFData.ID
+                    });
+                    aFilters.push(oFilter);
+                }
+
+          oTable.bindRows({
+                    path: '/ZC_TB_COMPLAINT_FF',
+                    filters: aFilters
+                });
+
+
+              },
+
+    //     const oFilterData = oView.getModel("filter").getData()
+    //     const aFilters = [];
+
+
+    //     const sCpf = oFilterData.cpf ? oFilterData.cpf.trim() : "";
+    //     const sId = oFilterData.id ? oFilterData.id.trim() : "";
+
+    //     // Filtro CPF
+    // if (sCpf) {
+    //     aFilters.push(
+    //         new Filter("Cpf", FilterOperator.EQ, sCpf)
+    //     );
+    // }
+
+    // // Filtro ID
+    // if (sId) {
+    //     aFilters.push(
+    //         new Filter("ID", FilterOperator.EQ, sId)
+    //     );
+    // }
+
+    //     const oTable = oView.byId("table1")
+    //     const oBinding = oTable.getBinding("rows")
+        
+    //     if (oBinding) {
+    //         oBinding.filter(aFilters, FilterType.Application) // Envia o filtro para o ABAP
+    //     }
+    //   },
+
+    //   onFilterReset: function () {
+    //     const oView = this.getView()
+    //     const oFilterModel = oView.getModel("filter")
+
+    //     oFilterModel.setData({
+    //       cpf: "",
+    //       id: ""
+    //     })
+
+    //     const oTable = oView.byId("table1");
+    //     const oBinding = oTable.getBinding("rows");
+        
+    //     if (oBinding) {
+    //         oBinding.filter([], FilterType.Application); 
+    //     }
+    //   }, 
+
+      RouteView2: function() { 
         const oRouter = this.getOwnerComponent().getRouter()
         oRouter.navTo('RouteView2')
-      },
-    })
-  },
-)
+      }
+    });
+  }
+);

@@ -22,7 +22,7 @@
             
             <f:content>
                 <Label text="{i18n>cpf}" />
-                <Input id="inputCpf" placeholder="{i18n>digiteCpf}" />
+                <Input id="inputCpf" placeholder="{i18n>digiteCpf}" change=".onValidaCPF" />
 
                 <Label text="{i18n>type}" />
                 <Select id="selectTipo">
